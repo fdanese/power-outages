@@ -46,3 +46,18 @@ Here are the first few rows of the cleaned DataFrame.
 | 2010 | 10.0  | Minnesota  | MRO         | East North Central | severe weather   | heavy wind            | 50.000000            | 70000.0           | NaN             | 2010-10-26 20:00:00 | 2010-10-28 22:00:00 |
 | 2012 | 6.0   | Minnesota  | MRO         | East North Central | severe weather   | thunderstorm          | 42.500000            | 68200.0           | NaN             | 2012-06-19 04:30:00 | 2012-06-20 23:00:00 |
 | 2015 | 7.0   | Minnesota  | MRO         | East North Central | severe weather   | NaN                   | 29.000000            | 250000.0          | 250.0           | 2015-07-18 02:00:00 | 2015-07-19 07:00:00 |
+
+## Exploratory Data Analysis
+
+### Univariate Analysis
+
+I first performed some univariate analysis of the distribution of single variables to get an idea of certain patterns in the dataset.
+
+First I checked to see what the main causes of major power outages were.
+
+<iframe
+  src="assets/Major_Outage_Causes.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
