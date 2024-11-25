@@ -87,7 +87,7 @@ I also conducted some bivariate analysis to observe the realationships between c
 The relationship between which states have longer power outages can be insightful, so I calculated the average outage duration for each state. Here is its distribution. States like Wisconsin, Michigan, and New York are states that are geographically close together and are also at the higher end of average outage duration.
 
 <iframe
-  src="assets/AvgOutageDurationByState.html"
+  src="assets/AvgOutDurationByState.html"
   width="800"
   height="600"
   frameborder="0"
@@ -110,3 +110,6 @@ Then I wanted to observe how the number of outages per year has changed over tim
   height="600"
   frameborder="0"
 ></iframe>
+
+### Grouping and Aggregates
+
