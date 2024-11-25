@@ -80,3 +80,33 @@ I also wanted to know what the distribution of outage dirations looked like.
   frameborder="0"
 ></iframe>
 
+### Bivariate Analysis
+
+I also conducted some bivariate analysis to observe the realationships between certain variables. 
+
+The relationship between which states have longer power outages can be insightful, so I calculated the average outage duration for each state. Here is its distribution. States like Wisconsin, Michigan, and New York are states that are geographically close together and are also at the higher end of average outage duration.
+
+<iframe
+  src="assets/AvgOutageDurationByState.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+I wanted to compare these results to the average outage duration for each climate region and see if there were some clear indicators or patterns. The east north central region had the highest average duration, falling in line with the pattern observed earlier.
+
+<iframe
+  src="assets/RegionOutageDuration.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+Then I wanted to observe how the number of outages per year has changed over time to see if there are any actionable insights. There is a noteable spike in outages in 2011, which may indicate some sort of special occurence.
+
+<iframe
+  src="assets/OutagesPerYear.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
