@@ -88,7 +88,7 @@ The relationship between which states have longer power outages can be insightfu
 
 <iframe
   src="assets/AvgOutDurationByState.html"
-  width="800"
+  width="1000"
   height="600"
   frameborder="0"
 ></iframe>
