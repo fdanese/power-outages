@@ -113,3 +113,30 @@ Then I wanted to observe how the number of outages per year has changed over tim
 
 ### Grouping and Aggregates
 
+To gain deeper insights into the characteristics of power outages, I performed grouping and aggregation on two important aspects of the data: NERC Regions and Climate Regions.
+
+First, I grouped the data by NERC Region and calculated the mean values for Outage Duration (Hours), Customers Affected, and Demand Loss (MW). This aggregation helps to identify the average impact of power outages in each NERC Region. The first few rows of the resulting DataFrame are shown below.
+
+| NERC.REGION  | OUTAGE.DURATION.HOURS | CUSTOMERS.AFFECTED | DEMAND.LOSS.MW |
+|--------------|------------------------|--------------------|----------------|
+| ASCC         | NaN                   | 14273              | 35.0           |
+| ECAR         | 93.388542             | 256354.187500      | 1314.483871    |
+| FRCC         | 71.185271             | 289778.181818      | 804.450000     |
+| FRCC, SERC   | 14.922222             | 126728.666667      | 466.666667     |
+| HECO         | 22.783333             | 294000.000000      | 1060.000000    |
+
+
+I also created a pivot table to explore the relationship between Climate Regions and Cause Categories of power outages. This pivot table displays the average duration (in hours) of outages caused by different events, grouped by climate region. It helps identify which regions are most affected by specific causes, such as severe weather. The first few rows of the resulting DataFrame are shown below.
+
+| CAUSE.CATEGORY   | equipment failure | fuel supply emergency | intentional attack | islanding | public appeal | severe weather | system operability disruption |
+|-------------------|-------------------|-----------------------|--------------------|-----------|---------------|----------------|-------------------------------|
+| Central           | 5.366667         | 167.254167           | 5.767647           | 2.088889  | 23.500000     | 54.166792      | 44.920000                     |
+| East North Central| 440.588889       | 566.187500           | 39.600833          | 0.016667  | 12.216667     | 73.913622      | 43.500000                     |
+| Northeast         | 3.596667         | 243.826190           | 3.266412           | 14.683333 | 44.250000     | 73.831714      | 12.891667                     |
+| Northwest         | 11.700000        | 0.016667             | 6.230192           | 1.222222  | 14.966667     | 80.633333      | 2.350000                      |
+| South             | 4.929630         | 291.375000           | 5.427686           | 8.225000  | 19.399603     | 73.189151      | 14.434568                     |
+
+# Assessment of Missingness
+
+## NMAR Analysis
+
