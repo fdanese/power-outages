@@ -61,3 +61,22 @@ First I checked to see what the main causes of major power outages were.
   height="600"
   frameborder="0"
 ></iframe>
+
+Then I wanted to see which climate regions experienced the most outages.
+
+<iframe
+  src="assets/Region_Outage_Count.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+I also wanted to know what the distribution of outage dirations looked like.
+
+<iframe
+  src="assets/Outage_Duration(Hours).html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
