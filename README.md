@@ -31,3 +31,18 @@ First things first, the dataset needs to be cleaned to make it useable for our a
 
 ## Cleaning
 
+1. First, I combined the `OUTAGE.START.DATE` and `OUTAGE.START.TIME` columns into a single Timestamp object in the column `OUTAGE.START`. I performed the same combination for `OUTAGE.RESTORATION.DATE` and `OUTAGE.RESTORATION.TIME` into the column `OUTAGE.RESTORATION`. I then dropped the columns used for their combination.
+
+2. Next, I added a column `OUTAGE.DURATION.HOURS` which converted outage duration times from minutes to hours to improve readability and make interpreting results easier.
+
+3. Some columns such as `OUTAGE.DURATION`, `OUTAGE.DURATION.HOURS`, `CUSTOMERS.AFFECTED`, and `DEMAND.LOSS.MW` contained values of 0, which are likely to be missing values (since major outages wouldn't last 0 minutes). The value np.nan was used in place of all 0s in these columns.
+
+Here are the first few rows of the cleaned DataFrame.
+
+| YEAR | MONTH | U.S._STATE | NERC.REGION | CLIMATE.REGION    | CAUSE.CATEGORY   | CAUSE.CATEGORY.DETAIL | OUTAGE.DURATION.HOURS | CUSTOMERS.AFFECTED | DEMAND.LOSS.MW | OUTAGE.START       | OUTAGE.RESTORATION |
+|------|-------|------------|-------------|-------------------|------------------|-----------------------|-----------------------|--------------------|-----------------|--------------------|---------------------|
+| 2011 | 7.0   | Minnesota  | MRO         | East North Central | severe weather   | NaN                   | 51.000000            | 70000.0           | NaN             | 2011-07-01 17:00:00 | 2011-07-03 20:00:00 |
+| 2014 | 5.0   | Minnesota  | MRO         | East North Central | intentional attack | vandalism             | 0.016667             | NaN               | NaN             | 2014-05-11 18:38:00 | 2014-05-11 18:39:00 |
+| 2010 | 10.0  | Minnesota  | MRO         | East North Central | severe weather   | heavy wind            | 50.000000            | 70000.0           | NaN             | 2010-10-26 20:00:00 | 2010-10-28 22:00:00 |
+| 2012 | 6.0   | Minnesota  | MRO         | East North Central | severe weather   | thunderstorm          | 42.500000            | 68200.0           | NaN             | 2012-06-19 04:30:00 | 2012-06-20 23:00:00 |
+| 2015 | 7.0   | Minnesota  | MRO         | East North Central | severe weather   | NaN                   | 29.000000            | 250000.0          | 250.0           | 2015-07-18 02:00:00 | 2015-07-19 07:00:00 |
