@@ -172,3 +172,5 @@ Based on these analyses:
 - Since the missingness appears to depend on another variable (`CAUSE.CATEGORY`), it might be **Missing at Random (MAR)**. However, without further external data or more detailed analysis, we cannot definitively conclude this.
 
 
+# Hypothesis Testing
+
