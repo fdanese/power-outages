@@ -174,8 +174,8 @@ I also tested whether the missingness of `CAUSE.CATEGORY.DETAIL` is independent 
 ></iframe>
 
 ### Key Findings
-- The missingness of `CAUSE.CATEGORY.DETAIL` depends on `CAUSE.CATEGORY`, suggesting it is **Not Missing At Random (NMAR)**.
-- The missingness is likely independent of `NERC.REGION`, suggesting it is portentially **Missing At Random (MAR)**.
+- The missingness of `CAUSE.CATEGORY.DETAIL` depends on `CAUSE.CATEGORY`, suggesting it is potentially **Not Missing At Random (NMAR)**.
+- The missingness is likely independent of `NERC.REGION`, suggesting it is potentially **Missing At Random (MAR)**.
 - Without additional external data, such as information on the reporting processes of energy companies, it is challenging to determine whether the missingness could be treated as **Missing at Random (MAR)**.
 
 
