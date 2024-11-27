@@ -181,3 +181,24 @@ I also tested whether the missingness of `CAUSE.CATEGORY.DETAIL` is independent 
 
 # Hypothesis Testing
 
+I performed a hypothesis test to investigate whether severe weather outages are more likely to occur in specific months. This test provides insight into whether there is a seasonal pattern to severe weather outages, which could inform preventive measures and resource allocation.
+
+### Hypotheses
+- **Null Hypothesis (H₀):** The proportion of outages caused by severe weather does not vary across months.
+- **Alternative Hypothesis (H₁):** The proportion of outages caused by severe weather is significantly higher in certain months (e.g., summer or winter).
+
+### Test Statistic and Methodology
+I used **Total Variation Distance (TVD)** as the test statistic to measure the difference between the observed proportions of severe weather outages across months and the null distribution. The null distribution was generated using 10,000 permutations of the `SEV.WEATHER` indicator.
+
+### Results
+The observed TVD was **0.4361**, and the p-value was **0.0001**. This small p-value indicates strong evidence against the null hypothesis. Thus, I reject the null hypothesis in favor of the alternative hypothesis. This suggests that severe weather outages are indeed more likely to occur in specific months, supporting the idea of a seasonal pattern. Below is a histogram showing the empirical distribution of permuted TVD values:
+
+<iframe
+  src="assets/HypTest.html"
+  width="1000"
+  height="600"
+  frameborder="0"
+></iframe>
+
+### Conclusion
+The results of this hypothesis test suggest a significant seasonal trend in severe weather outages. Further analysis could explore the specific months where severe weather outages are most common and examine the underlying climatic factors contributing to this pattern.
