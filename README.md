@@ -152,8 +152,8 @@ The column `CUSTOMERS.AFFECTED` exhibits missing values that are likely Not Miss
 To examine whether the missingness of `CAUSE.CATEGORY.DETAIL` depends on `CAUSE.CATEGORY`, I performed a permutation test using Total Variation Distance (TVD) as the test statistic. The observed TVD was **1.1071**, and the p-value was **0.0**. This result indicates strong evidence that the missingness of `CAUSE.CATEGORY.DETAIL` is dependent on `CAUSE.CATEGORY`. The histogram of permuted TVD values is shown below:
 
 <iframe
-  src="assets/CAUSE_CATEGORY.html"
-  width="800"
+  src="assets/NMAR.html"
+  width="1000"
   height="600"
   frameborder="0"
 ></iframe>
@@ -167,8 +167,8 @@ To examine whether the missingness of `CAUSE.CATEGORY.DETAIL` depends on `CAUSE.
 I also tested whether the missingness of `CAUSE.CATEGORY.DETAIL` is independent of the variable `NERC.REGION`. The observed TVD for this test was **1.4441**, with a p-value of **0.067**. This suggests weak evidence against the null hypothesis, meaning the missingness is likely independent of `NERC.REGION`. The histogram for this test is displayed below:
 
 <iframe
-  src="assets/NERC_REGION.html"
-  width="800"
+  src="assets/MAR.html"
+  width="1000"
   height="600"
   frameborder="0"
 ></iframe>
