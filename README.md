@@ -200,5 +200,38 @@ The observed TVD was **0.4361**, and the p-value was **0.0001**. This small p-va
   frameborder="0"
 ></iframe>
 
-### Conclusion
-The results of this hypothesis test suggest a significant seasonal trend in severe weather outages. Further analysis could explore the specific months where severe weather outages are most common and examine the underlying climatic factors contributing to this pattern.
+# Framing a Prediction Problem
+
+#### Goal
+The goal of this prediction task is to estimate the duration of a power outage (`OUTAGE.DURATION`, measured in minutes) based on other features in the dataset. Accurately predicting outage durations can help energy companies better allocate resources, optimize recovery efforts, and improve customer satisfaction during outages.
+
+#### Prediction Type
+This is a **regression problem** because the target variable is continuous. The model aims to predict the exact duration of outages rather than categorizing them into discrete classes.
+
+#### Target Variable
+The response variable for this prediction task is:
+- **`OUTAGE.DURATION`**: The total duration of the power outage in minutes.
+
+#### Features
+To make predictions, the model will use the following features that are known at the time of the outage:
+- **`CAUSE.CATEGORY`**: The primary cause of the outage (e.g., severe weather, equipment failure). This can provide context for the duration of the outage.
+- **`MONTH`**: Encodes seasonal effects that may influence outage patterns and durations.
+- **`CLIMATE.REGION`**: Reflects regional climate conditions, which may affect the severity of outages.
+- **`NERC.REGION`**: Indicates the electrical region responsible for managing the outage.
+- **`CUSTOMERS.AFFECTED`**: The number of customers affected, which may correlate with the complexity of resolving the outage.
+- **`DEMAND.LOSS.MW`**: Represents the energy loss during the outage, a potential indicator of the scale and complexity of the outage.
+
+#### Justification for Features
+The selected features are all known at the time of prediction and exclude information that would only become available after the outage (e.g., restoration time). This ensures the model is practical and adheres to real-world constraints.
+
+#### Handling Missing Data
+To address missing data:
+- Rows with missing values in the response variable, `OUTAGE.DURATION`, will be dropped.
+- Missing values in numeric features will be imputed using the mean.
+- Missing values in categorical features will be imputed using the most frequent value.
+
+#### Evaluation Metrics
+To evaluate the regression model, the **R² score** will be used. This metric measures the proportion of variance in the target variable explained by the model, providing insight into how well the model captures the underlying patterns in the data. R² was chosen because it is intuitive and widely used for regression problems, making it an effective metric for assessing model performance.
+
+# Baseline Model
+
