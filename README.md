@@ -138,38 +138,45 @@ I also created a pivot table to explore the relationship between Climate Regions
 
 # Assessment of Missingness
 
-## NMAR Analysis
+In this step, I analyzed the missingness in the dataset, focusing on the column `CAUSE.CATEGORY.DETAIL`. This column contains categorical data describing specific causes of power outages. To determine if the missingness in this column is related to other variables in the dataset, I conducted permutation tests and visualized the results. Understanding the mechanisms of missingness is crucial for handling incomplete data effectively in later steps.
 
-In this step, I investigated the missingness of the column `CAUSE.CATEGORY.DETAIL` to determine whether the missing values in this column are related to any other variables in the dataset or if the data might be missing at random. Below, I present the results of my analysis, including permutation tests and visualizations. This analysis helps in understanding the mechanisms behind the missingness in the dataset, which will help guide the handling of missing data in later steps.
+### NMAR Analysis
+The column `CUSTOMERS.AFFECTED` exhibits missing values that are likely Not Missing At Random (NMAR). This is because the missingness could stem from the reporting processes of individual companies, where some entities may not have recorded customer impact data during power outages. To further confirm whether the missingness is MAR, one could gather data about the reporting companies and analyze their behavior.
 
-#### Dependence on `CAUSE.CATEGORY`
-To check if the missingness of `CAUSE.CATEGORY.DETAIL` depends on the column `CAUSE.CATEGORY`, I performed a permutation test using Total Variation Distance (TVD) as the test statistic. The observed TVD was **1.1071**, and the p-value was **0.0**, indicating strong evidence that the missingness of `CAUSE.CATEGORY.DETAIL` depends on `CAUSE.CATEGORY`. The histogram of the permuted TVD values are shown below.
+### Dependence on `CAUSE.CATEGORY`
 
+#### Hypotheses
+- **Null Hypothesis (H₀):** The missingness of `CAUSE.CATEGORY.DETAIL` is independent of `CAUSE.CATEGORY`.  
+- **Alternative Hypothesis (H₁):** The missingness of `CAUSE.CATEGORY.DETAIL` depends on `CAUSE.CATEGORY`.
+
+To examine whether the missingness of `CAUSE.CATEGORY.DETAIL` depends on `CAUSE.CATEGORY`, I performed a permutation test using Total Variation Distance (TVD) as the test statistic. The observed TVD was **1.1071**, and the p-value was **0.0**. This result indicates strong evidence that the missingness of `CAUSE.CATEGORY.DETAIL` is dependent on `CAUSE.CATEGORY`. The histogram of permuted TVD values is shown below:
 
 <iframe
-  src="assets/MAR.html"
+  src="assets/CAUSE_CATEGORY.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
 
+### Independence Test with `NERC.REGION`
 
-#### Independence Test with `NERC.REGION`
-To explore if `CAUSE.CATEGORY.DETAIL` is independent of another variable, I conducted a similar test with `NERC.REGION`. The observed TVD was **1.4441**, and the p-value was **0.067**, suggesting weak evidence against the null hypothesis, meaning that the missingness of `CAUSE.CATEGORY.DETAIL` is likely independent of `NERC.REGION`.
+#### Hypotheses
+- **Null Hypothesis (H₀):** The missingness of `CAUSE.CATEGORY.DETAIL` is independent of `NERC.REGION`.  
+- **Alternative Hypothesis (H₁):** The missingness of `CAUSE.CATEGORY.DETAIL` depends on `NERC.REGION`.
+
+I also tested whether the missingness of `CAUSE.CATEGORY.DETAIL` is independent of the variable `NERC.REGION`. The observed TVD for this test was **1.4441**, with a p-value of **0.067**. This suggests weak evidence against the null hypothesis, meaning the missingness is likely independent of `NERC.REGION`. The histogram for this test is displayed below:
 
 <iframe
-  src="assets/NMAR.html"
+  src="assets/NERC_REGION.html"
   width="800"
   height="600"
   frameborder="0"
 ></iframe>
 
-
-#### Key Findings
-Based on these analyses:
-- The missingness of `CAUSE.CATEGORY.DETAIL` is dependent on `CAUSE.CATEGORY`, suggesting it is not Missing Completely at Random (MCAR).
+### Key Findings
+- The missingness of `CAUSE.CATEGORY.DETAIL` depends on `CAUSE.CATEGORY`, suggesting it is **Not Missing At Random (NMAR)**.
 - The missingness is likely independent of `NERC.REGION`.
-- Since the missingness appears to depend on another variable (`CAUSE.CATEGORY`), it might be **Missing at Random (MAR)**. However, without further external data or more detailed analysis, we cannot definitively conclude this.
+- Without additional external data, such as information on the reporting processes of energy companies, it is challenging to determine whether the missingness could be treated as **Missing at Random (MAR)**.
 
 
 # Hypothesis Testing
