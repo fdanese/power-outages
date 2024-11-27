@@ -140,3 +140,35 @@ I also created a pivot table to explore the relationship between Climate Regions
 
 ## NMAR Analysis
 
+In this step, I investigated the missingness of the column `CAUSE.CATEGORY.DETAIL` to determine whether the missing values in this column are related to any other variables in the dataset or if the data might be missing at random. Below, I present the results of my analysis, including permutation tests and visualizations. This analysis helps in understanding the mechanisms behind the missingness in the dataset, which will help guide the handling of missing data in later steps.
+
+#### Dependence on `CAUSE.CATEGORY`
+To check if the missingness of `CAUSE.CATEGORY.DETAIL` depends on the column `CAUSE.CATEGORY`, I performed a permutation test using Total Variation Distance (TVD) as the test statistic. The observed TVD was **1.1071**, and the p-value was **0.0**, indicating strong evidence that the missingness of `CAUSE.CATEGORY.DETAIL` depends on `CAUSE.CATEGORY`. The histogram of the permuted TVD values are shown below.
+
+
+<iframe
+  src="assets/MAR.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+
+#### Independence Test with `NERC.REGION`
+To explore if `CAUSE.CATEGORY.DETAIL` is independent of another variable, I conducted a similar test with `NERC.REGION`. The observed TVD was **1.4441**, and the p-value was **0.067**, suggesting weak evidence against the null hypothesis, meaning that the missingness of `CAUSE.CATEGORY.DETAIL` is likely independent of `NERC.REGION`.
+
+<iframe
+  src="assets/NMAR.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+
+#### Key Findings
+Based on these analyses:
+- The missingness of `CAUSE.CATEGORY.DETAIL` is dependent on `CAUSE.CATEGORY`, suggesting it is not Missing Completely at Random (MCAR).
+- The missingness is likely independent of `NERC.REGION`.
+- Since the missingness appears to depend on another variable (`CAUSE.CATEGORY`), it might be **Missing at Random (MAR)**. However, without further external data or more detailed analysis, we cannot definitively conclude this.
+
+
