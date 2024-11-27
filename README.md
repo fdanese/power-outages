@@ -141,7 +141,7 @@ I also created a pivot table to explore the relationship between Climate Regions
 In this step, I analyzed the missingness in the dataset, focusing on the column `CAUSE.CATEGORY.DETAIL`. This column contains categorical data describing specific causes of power outages. To determine if the missingness in this column is related to other variables in the dataset, I conducted permutation tests and visualized the results. Understanding the mechanisms of missingness is crucial for handling incomplete data effectively in later steps.
 
 ### NMAR Analysis
-The column `CUSTOMERS.AFFECTED` exhibits missing values that are likely Not Missing At Random (NMAR). This is because the missingness could stem from the reporting processes of individual companies, where some entities may not have recorded customer impact data during power outages. To further confirm whether the missingness is MAR, one could gather data about the reporting companies and analyze their behavior.
+The column `CAUSE.CATEGORY.DETAIL` exhibits missing values that are likely Not Missing At Random (NMAR). This is because the missingness could stem from the reporting processes of individual companies, where some entities may not have recorded cause details during power outages. To further confirm whether the missingness is MAR, one could gather data about the reporting companies and analyze their behavior.
 
 ### Dependence on `CAUSE.CATEGORY`
 
@@ -149,7 +149,7 @@ The column `CUSTOMERS.AFFECTED` exhibits missing values that are likely Not Miss
 - **Null Hypothesis (H₀):** The missingness of `CAUSE.CATEGORY.DETAIL` is independent of `CAUSE.CATEGORY`.  
 - **Alternative Hypothesis (H₁):** The missingness of `CAUSE.CATEGORY.DETAIL` depends on `CAUSE.CATEGORY`.
 
-To examine whether the missingness of `CAUSE.CATEGORY.DETAIL` depends on `CAUSE.CATEGORY`, I performed a permutation test using Total Variation Distance (TVD) as the test statistic. The observed TVD was **1.1071**, and the p-value was **0.0**. This result indicates strong evidence that the missingness of `CAUSE.CATEGORY.DETAIL` is dependent on `CAUSE.CATEGORY`. The histogram of permuted TVD values is shown below:
+To examine whether the missingness of `CAUSE.CATEGORY.DETAIL` depends on `CAUSE.CATEGORY`, I performed a permutation test using Total Variation Distance (TVD) as the test statistic, measuring the difference between expected proportions. The observed TVD was **1.1071**, and the p-value was **0.0**. This result indicates strong evidence that the missingness of `CAUSE.CATEGORY.DETAIL` is dependent on `CAUSE.CATEGORY`. The histogram of permuted TVD values is shown below:
 
 <iframe
   src="assets/NMAR.html"
@@ -175,7 +175,7 @@ I also tested whether the missingness of `CAUSE.CATEGORY.DETAIL` is independent 
 
 ### Key Findings
 - The missingness of `CAUSE.CATEGORY.DETAIL` depends on `CAUSE.CATEGORY`, suggesting it is **Not Missing At Random (NMAR)**.
-- The missingness is likely independent of `NERC.REGION`.
+- The missingness is likely independent of `NERC.REGION`, suggesting it is portentially **Missing At Random (MAR)**.
 - Without additional external data, such as information on the reporting processes of energy companies, it is challenging to determine whether the missingness could be treated as **Missing at Random (MAR)**.
 
 
