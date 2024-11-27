@@ -203,35 +203,31 @@ The observed TVD was **0.4361**, and the p-value was **0.0001**. This small p-va
 # Framing a Prediction Problem
 
 #### Goal
-The goal of this prediction task is to estimate the duration of a power outage (`OUTAGE.DURATION`, measured in minutes) based on other features in the dataset. Accurately predicting outage durations can help energy companies better allocate resources, optimize recovery efforts, and improve customer satisfaction during outages.
+The goal of this prediction task is to classify the primary cause of power outages (`CAUSE.CATEGORY`) based on available information such as the time of the outage, regional characteristics, and the scale of the outage. By predicting the cause of outages, energy companies can proactively allocate resources and develop strategies to mitigate future outages based on patterns in historical data.
 
 #### Prediction Type
-This is a **regression problem** because the target variable is continuous. The model aims to predict the exact duration of outages rather than categorizing them into discrete classes.
-
-#### Target Variable
-The response variable for this prediction task is:
-- **`OUTAGE.DURATION`**: The total duration of the power outage in minutes.
+This is a **multi-class classification problem**, as the target variable (`CAUSE.CATEGORY`) consists of several discrete categories representing different causes of power outages (e.g., severe weather, equipment failure).
 
 #### Features
-To make predictions, the model will use the following features that are known at the time of the outage:
-- **`CAUSE.CATEGORY`**: The primary cause of the outage (e.g., severe weather, equipment failure). This can provide context for the duration of the outage.
-- **`MONTH`**: Encodes seasonal effects that may influence outage patterns and durations.
-- **`CLIMATE.REGION`**: Reflects regional climate conditions, which may affect the severity of outages.
-- **`NERC.REGION`**: Indicates the electrical region responsible for managing the outage.
-- **`CUSTOMERS.AFFECTED`**: The number of customers affected, which may correlate with the complexity of resolving the outage.
-- **`DEMAND.LOSS.MW`**: Represents the energy loss during the outage, a potential indicator of the scale and complexity of the outage.
+To make predictions, the model will use the following features that are available at the time of prediction:
+- **`MONTH`**: Represents the time of year, which may influence outage causes due to seasonal weather patterns.
+- **`CLIMATE.REGION`**: Encodes regional climate conditions, which could impact the likelihood of certain outage causes.
+- **`NERC.REGION`**: Indicates the electrical region responsible for managing the outage, potentially reflecting systemic or infrastructure-related factors.
+- **`CUSTOMERS.AFFECTED`**: The number of customers impacted by the outage, which may correlate with the type of event causing the outage.
+- **`DEMAND.LOSS.MW`**: Represents the energy loss during the outage, which could be indicative of the scale and nature of the outage.
 
 #### Justification for Features
-The selected features are all known at the time of prediction and exclude information that would only become available after the outage (e.g., restoration time). This ensures the model is practical and adheres to real-world constraints.
+The selected features are all known or measurable at the time of prediction, ensuring that the model operates under realistic constraints. They capture critical information about the timing, regional context, and scale of outages, which are key factors influencing outage causes.
 
 #### Handling Missing Data
 To address missing data:
-- Rows with missing values in the response variable, `OUTAGE.DURATION`, will be dropped.
-- Missing values in numeric features will be imputed using the mean.
-- Missing values in categorical features will be imputed using the most frequent value.
+- Rows with missing values in the response variable, `CAUSE.CATEGORY`, are excluded from the analysis.
+- Missing values in numeric features are imputed using the mean.
+- Missing values in categorical features are imputed using the most frequent value.
 
 #### Evaluation Metrics
-To evaluate the regression model, the **R² score** will be used. This metric measures the proportion of variance in the target variable explained by the model, providing insight into how well the model captures the underlying patterns in the data. R² was chosen because it is intuitive and widely used for regression problems, making it an effective metric for assessing model performance.
+To evaluate the classification model, both the **F1 score** and the **R² score** will be used. The F1 score balances precision and recall across all classes, making it suitable for multi-class classification problems where class imbalances may exist. The R² score measures the proportion of variance in the target variable explained by the model, providing insight into how well the model captures the underlying patterns in the data. Together, these metrics offer a comprehensive view of the model’s performance, balancing class-wise accuracy and overall predictive strength.
+
 
 # Baseline Model
 
