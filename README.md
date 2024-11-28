@@ -153,7 +153,7 @@ To examine whether the missingness of `CAUSE.CATEGORY.DETAIL` depends on `CAUSE.
 
 <iframe
   src="assets/NMAR.html"
-  width="1000"
+  width="800"
   height="600"
   frameborder="0"
 ></iframe>
@@ -168,7 +168,7 @@ I also tested whether the missingness of `CAUSE.CATEGORY.DETAIL` is independent 
 
 <iframe
   src="assets/MAR.html"
-  width="1000"
+  width="800"
   height="600"
   frameborder="0"
 ></iframe>
@@ -195,7 +195,7 @@ The observed TVD was **0.4361**, and the p-value was **0.0001**. This small p-va
 
 <iframe
   src="assets/HypTest.html"
-  width="1000"
+  width="800"
   height="600"
   frameborder="0"
 ></iframe>
