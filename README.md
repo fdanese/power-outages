@@ -231,3 +231,68 @@ To evaluate the classification model, both the **F1 score** and the **R² score*
 
 # Baseline Model
 
+### Model Overview
+My baseline model is a **Random Forest Classifier** designed to predict the `CAUSE.CATEGORY` of power outages based on a set of features. Random Forest was chosen for its robustness to overfitting and its ability to handle both numerical and categorical data effectively.
+
+### Features in the Model
+The model includes **five features**, categorized as follows:
+- **Quantitative Features (3)**:
+  - `MONTH`: Encodes the month when the outage occurred.
+  - `CUSTOMERS.AFFECTED`: Represents the number of customers impacted by the outage.
+  - `DEMAND.LOSS.MW`: Measures the energy demand lost during the outage.
+- **Nominal Features (2)**:
+  - `CLIMATE.REGION`: Represents the climate region associated with the outage.
+  - `NERC.REGION`: Specifies the North American Electric Reliability Corporation region responsible for managing the outage.
+
+### Feature Encoding
+- **Nominal Features**: `CLIMATE.REGION` and `NERC.REGION` were one-hot encoded using `OneHotEncoder` to convert them into binary indicators.
+- **Quantitative Features**: `MONTH`, `CUSTOMERS.AFFECTED`, and `DEMAND.LOSS.MW` were standardized using `StandardScaler` to ensure they were on comparable scales. Missing values in quantitative features were imputed with the mean, while categorical features used the most frequent value for imputation.
+
+### Model Performance
+The baseline model achieved the following performance metrics:
+- **R² Score**: 0.71
+- **F1 Score (Macro-Averaged)**: 0.48
+
+### Evaluation of Model Performance
+The R² score of 0.71 suggests that the model explains a substantial portion of the variability in the target variable, indicating decent predictive power. However, the F1 score of 0.48 reflects limitations in balancing precision and recall across all classes, particularly for underrepresented categories. This discrepancy suggests that while the model performs reasonably well overall, there is room for improvement in handling imbalanced data and ensuring better predictions for less frequent outage causes. Further feature engineering and hyperparameter tuning could enhance the model’s effectiveness.
+
+# Final Model
+
+### Features Added and Justification
+For the Final Model, two new features were engineered and added:
+- **`CUSTOMERS.AFFECTED.LOG`**: This is the natural logarithm of `CUSTOMERS.AFFECTED`. Log transformations are particularly useful for features with skewed distributions as they reduce the impact of outliers and stabilize variance, allowing the model to better capture patterns in the data.
+- **`CUSTOMERS_x_DEMAND`**: This feature is the product of `CUSTOMERS.AFFECTED` and `DEMAND.LOSS.MW`. This interaction term represents the combined effect of the number of customers affected and the energy demand lost during an outage, which can provide critical insights into the scale and severity of an outage.
+
+These features were selected based on their potential relevance to the data-generating process. The log transformation addresses skewness in the data, while the interaction term captures a meaningful relationship between two key variables that likely influence the cause of outages.
+
+### Modeling Algorithm and Hyperparameters
+The Final Model uses a **Random Forest Classifier**, which was chosen for its flexibility, ability to handle both numerical and categorical data, and effectiveness in capturing complex relationships in the data. 
+
+Hyperparameter tuning was conducted using **GridSearchCV** with 5-fold cross-validation. The hyperparameters tested and the best-performing values are:
+- **`n_estimators`**: 100 (number of trees in the forest)
+- **`max_depth`**: 20 (maximum depth of the trees)
+- **`min_samples_split`**: 2 (minimum number of samples required to split an internal node)
+- **`min_samples_leaf`**: 1 (minimum number of samples required to be at a leaf node)
+
+### Model Performance
+The Final Model showed improved performance compared to the Baseline Model:
+- **Baseline Model**:
+  - **R² Score**: 0.71
+  - **F1 Score**: 0.48
+- **Final Model**:
+  - **R² Score**: 0.76
+  - **F1 Score**: 0.57
+
+This improvement demonstrates that the newly added features enhanced the model’s ability to capture patterns in the data and make more accurate predictions. Additionally, hyperparameter tuning further optimized the model for better performance.
+
+### Confusion Matrix
+Below is the confusion matrix for the Final Model, which provides a detailed view of the model’s performance across different classes:
+
+![Confusion Matrix](assets/confusion_matrix_final_model.png)
+
+### Conclusion
+The Final Model outperforms the Baseline Model by effectively leveraging engineered features and optimized hyperparameters. These enhancements were guided by a deeper understanding of the data-generating process and resulted in a more robust classification model. While there is still room for improvement in predicting minority classes (e.g., `equipment failure`), the Final Model achieves significant improvements in both accuracy and F1 score, indicating its overall reliability for this prediction task.
+
+# Evaluating Model Fairness
+
+
