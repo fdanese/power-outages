@@ -202,13 +202,13 @@ The observed TVD was **0.4361**, and the p-value was **0.0001**. This small p-va
 
 # Framing a Prediction Problem
 
-#### Goal
+### Goal
 The goal of this prediction task is to classify the primary cause of power outages (`CAUSE.CATEGORY`) based on available information such as the time of the outage, regional characteristics, and the scale of the outage. By predicting the cause of outages, energy companies can proactively allocate resources and develop strategies to mitigate future outages based on patterns in historical data.
 
-#### Prediction Type
+### Prediction Type
 This is a **multi-class classification problem**, as the target variable (`CAUSE.CATEGORY`) consists of several discrete categories representing different causes of power outages (e.g., severe weather, equipment failure).
 
-#### Features
+### Features
 To make predictions, the model will use the following features that are available at the time of prediction:
 - **`MONTH`**: Represents the time of year, which may influence outage causes due to seasonal weather patterns.
 - **`CLIMATE.REGION`**: Encodes regional climate conditions, which could impact the likelihood of certain outage causes.
@@ -216,16 +216,16 @@ To make predictions, the model will use the following features that are availabl
 - **`CUSTOMERS.AFFECTED`**: The number of customers impacted by the outage, which may correlate with the type of event causing the outage.
 - **`DEMAND.LOSS.MW`**: Represents the energy loss during the outage, which could be indicative of the scale and nature of the outage.
 
-#### Justification for Features
+### Justification for Features
 The selected features are all known or measurable at the time of prediction, ensuring that the model operates under realistic constraints. They capture critical information about the timing, regional context, and scale of outages, which are key factors influencing outage causes.
 
-#### Handling Missing Data
+### Handling Missing Data
 To address missing data:
 - Rows with missing values in the response variable, `CAUSE.CATEGORY`, are excluded from the analysis.
 - Missing values in numeric features are imputed using the mean.
 - Missing values in categorical features are imputed using the most frequent value.
 
-#### Evaluation Metrics
+### Evaluation Metrics
 To evaluate the classification model, both the **F1 score** and the **R² score** will be used. The F1 score balances precision and recall across all classes, making it suitable for multi-class classification problems where class imbalances may exist. The R² score measures the proportion of variance in the target variable explained by the model, providing insight into how well the model captures the underlying patterns in the data. Together, these metrics offer a comprehensive view of the model’s performance, balancing class-wise accuracy and overall predictive strength.
 
 
@@ -264,6 +264,14 @@ For the Final Model, two new features were engineered and added:
 - **`CUSTOMERS_x_DEMAND`**: This feature is the product of `CUSTOMERS.AFFECTED` and `DEMAND.LOSS.MW`. This interaction term represents the combined effect of the number of customers affected and the energy demand lost during an outage, which can provide critical insights into the scale and severity of an outage.
 
 These features were selected based on their potential relevance to the data-generating process. The log transformation addresses skewness in the data, while the interaction term captures a meaningful relationship between two key variables that likely influence the cause of outages.
+
+Other columns which would also be available at the time of an outage were added to the model. Each added column and the reason for its addition are included below:
+
+- **`ANOMALY.LEVEL`**: A categorical feature indicating the severity level of anomalies detected in the data (e.g., weather anomalies, system failures). This column provides insights into unusual or extreme conditions associated with the outage.
+
+- **`POPPCT_URBAN`**: A numerical feature representing the percentage of the affected area classified as urban. This column helps capture the demographic and infrastructural context of the outage location.
+
+- **`TOTAL.PRICE`**: A numerical feature indicating the total cost or economic impact associated with the outage. This column provides a measure of the financial consequences of the outage and its scale.
 
 ### Modeling Algorithm and Hyperparameters
 The Final Model uses a **Random Forest Classifier**, which was chosen for its flexibility, ability to handle both numerical and categorical data, and effectiveness in capturing complex relationships in the data. 
