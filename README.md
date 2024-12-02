@@ -303,4 +303,39 @@ The Final Model outperforms the Baseline Model by effectively leveraging enginee
 
 # Evaluating Model Fairness
 
+### Choice of Groups
+- **Group X**: Urban areas (defined as states where `POPPCT_URBAN >= 80`).
+- **Group Y**: Rural areas (defined as states where `POPPCT_URBAN < 80`).
+
+### Evaluation Metric
+The evaluation metric used for this fairness analysis is the **F1 score**. This metric balances precision and recall across all classes, making it particularly suitable for our multi-class classification model.
+
+### Null and Alternative Hypotheses
+- **Null Hypothesis (H₀)**: The model is fair. The F1 score for urban and rural areas is roughly the same, and any observed difference is due to random chance.
+- **Alternative Hypothesis (H₁)**: The model is unfair. The F1 score for urban areas is significantly higher than that for rural areas.
+
+### Test Statistic and Significance Level
+- **Test Statistic**: The observed difference in F1 scores between urban and rural groups:
+  \[
+  \text{Observed Difference} = \text{F1(Urban)} - \text{F1(Rural)} = 0.2453
+  \]
+- **Significance Level (α)**: 0.05
+
+### Results
+Using a permutation test with 10,000 iterations, the **p-value** was computed as:
+\[
+\text{p-value} = 0.0031
+\]
+
+The histogram below shows the distribution of permuted differences, with the observed difference marked by a vertical red line:
+
+<iframe
+  src="assets/FairnessTest.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+#### Conclusion
+The p-value of 0.0031 is less than our significance level of 0.05. Therefore, we reject the null hypothesis and conclude that the model exhibits a statistically significant difference in performance between urban and rural areas. Specifically, the F1 score for urban areas is notably higher than for rural areas, suggesting that the model performs better in urban settings. This discrepancy warrants further investigation to identify and mitigate potential biases in the model.
 
