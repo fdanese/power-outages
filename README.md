@@ -310,7 +310,7 @@ Here I want to determine if my model performs worse for states that are consider
 - **Group Y**: Rural areas (defined as states where `POPPCT_URBAN < 80`).
 
 ### Evaluation Metric
-The evaluation metric used for this fairness analysis is the **F1 score**. This metric balances precision and recall across all classes, making it particularly suitable for our multi-class classification model.
+The evaluation metric used for this fairness analysis is the **F1 score**. This metric balances precision and recall across all classes, making it particularly suitable for a multi-class classification model.
 
 ### Null and Alternative Hypotheses
 - **Null Hypothesis (H₀)**: The model is fair. The F1 score for urban and rural areas is roughly the same, and any observed difference is due to random chance.
@@ -318,12 +318,14 @@ The evaluation metric used for this fairness analysis is the **F1 score**. This 
 
 ### Test Statistic and Significance Level
 - **Test Statistic**: The observed difference in F1 scores between urban and rural groups:
+
   *Observed Difference* = F1(Urban) - F1(Rural) = 0.2453
 - **Significance Level (α)**: 0.05
 
 ### Results
 Using a permutation test with 10,000 iterations, the **p-value** was computed as:
-*p-value* = 0.0031
+
+*P-value* = 0.0031
 
 The histogram below shows the distribution of permuted differences, with the observed difference marked by a vertical red line:
 
