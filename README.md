@@ -303,7 +303,9 @@ The Final Model outperforms the Baseline Model by effectively leveraging enginee
 
 # Evaluating Model Fairness
 
-### Choice of Groups
+Here I want to determine if my model performs worse for states that are considered more rural than it does for states that are more urban.
+
+### Groups
 - **Group X**: Urban areas (defined as states where `POPPCT_URBAN >= 80`).
 - **Group Y**: Rural areas (defined as states where `POPPCT_URBAN < 80`).
 
@@ -316,16 +318,12 @@ The evaluation metric used for this fairness analysis is the **F1 score**. This 
 
 ### Test Statistic and Significance Level
 - **Test Statistic**: The observed difference in F1 scores between urban and rural groups:
-  \[
-  \text{Observed Difference} = \text{F1(Urban)} - \text{F1(Rural)} = 0.2453
-  \]
+  *Observed Difference* = F1(Urban) - F1(Rural) = 0.2453
 - **Significance Level (α)**: 0.05
 
 ### Results
 Using a permutation test with 10,000 iterations, the **p-value** was computed as:
-\[
-\text{p-value} = 0.0031
-\]
+*p-value* = 0.0031
 
 The histogram below shows the distribution of permuted differences, with the observed difference marked by a vertical red line:
 
